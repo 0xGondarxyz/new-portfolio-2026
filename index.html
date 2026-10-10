@@ -1,0 +1,1074 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Murat Can Yuksel | AI Automation Developer</title>
+  <meta name="description" content="Solo developer building apps, games and automations with AI agents. Open to AI automation roles.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <script>
+    if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js');
+  </script>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      color-scheme: light dark;
+      --page: light-dark(#F2F1EA, #171B20);
+      --surface: light-dark(#FFFFFF, #232A32);
+      --text: light-dark(#17202B, #F4F3ED);
+      --muted: light-dark(#52606C, #BAC4D0);
+      --line: light-dark(#52606C, #BAC4D0);
+      --accent: light-dark(#2454BD, #97BAFF);
+      --on-accent: light-dark(#FFFFFF, #171B20);
+    }
+
+    /* The theme button sets data-theme; without it the system setting applies */
+    :root[data-theme="light"] { color-scheme: light; }
+    :root[data-theme="dark"] { color-scheme: dark; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      html { scroll-behavior: smooth; }
+    }
+
+    body {
+      font-family: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
+      background: var(--page);
+      color: var(--text);
+      font-size: 18px;
+      line-height: 1.55;
+      letter-spacing: -0.5px;
+    }
+
+    .skip-link {
+      position: absolute;
+      left: 12px;
+      top: -60px;
+      background: var(--accent);
+      color: var(--on-accent);
+      padding: 8px 12px;
+      z-index: 200;
+    }
+
+    .skip-link:focus { top: 12px; }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 24px;
+      padding: 24px 40px;
+      border-bottom: 1.5px solid var(--line);
+      position: sticky;
+      top: 0;
+      background: var(--surface);
+      z-index: 100;
+    }
+
+    .logo {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      color: var(--text);
+    }
+
+    nav {
+      display: flex;
+      gap: 40px;
+    }
+
+    nav a {
+      color: var(--text);
+      text-decoration: none;
+      border-bottom: 1.5px solid transparent;
+      padding-bottom: 2px;
+      transition: border-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+      font-size: 16px;
+    }
+
+    nav a:hover,
+    nav a:focus {
+      border-color: var(--accent);
+      outline: none;
+    }
+
+    nav a:focus-visible,
+    .theme-btn:focus-visible,
+    .cta:focus-visible,
+    .replay-btn:focus-visible,
+    .contact-link:focus-visible,
+    .back-to-top:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .theme-btn {
+      background: transparent;
+      border: 1.5px solid var(--line);
+      color: var(--text);
+      padding: 8px 14px;
+      font-size: 14px;
+      min-height: 44px;
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+      transition: border-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1), background-color 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .theme-btn:hover,
+    .theme-btn[aria-pressed="true"] {
+      background: var(--accent);
+      color: var(--on-accent);
+      border-color: var(--accent);
+    }
+
+    main { max-width: 1280px; margin: 0 auto; padding: 0 40px; }
+
+    section { padding: 96px 0; }
+
+    .section-title {
+      font-family: 'Bricolage Grotesque', serif;
+      font-size: 48px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 40px;
+      color: var(--text);
+    }
+
+    /* Hero */
+    .hero { padding: 56px 0 96px; }
+
+    .hero-name {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 16px;
+      margin-bottom: 16px;
+    }
+
+    .hero h1 {
+      font-family: 'Bricolage Grotesque', serif;
+      font-size: 88px;
+      font-weight: 700;
+      line-height: 1.1;
+      margin-bottom: 48px;
+      color: var(--text);
+    }
+
+    .hero-body {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      gap: 48px;
+      align-items: center;
+    }
+
+    .hero-intro {
+      font-size: 20px;
+      margin-bottom: 12px;
+    }
+
+    .hero-availability {
+      font-size: 16px;
+      color: var(--muted);
+      margin-bottom: 32px;
+    }
+
+    .hero-diagram {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+
+    .cta {
+      display: inline-block;
+      padding: 14px 28px;
+      background: var(--accent);
+      color: var(--on-accent);
+      text-decoration: none;
+      border: 1.5px solid var(--accent);
+      font-size: 16px;
+      transition: box-shadow 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .cta:hover,
+    .cta:focus-visible {
+      box-shadow: 4px 4px 0 var(--line);
+    }
+
+    /* Signal diagram shared by the hero and the setup strip */
+    .route {
+      fill: none;
+      stroke: var(--line);
+      stroke-width: 1.5;
+    }
+
+    .stage {
+      fill: var(--page);
+      stroke: var(--line);
+      stroke-width: 1.5;
+      transition: stroke 420ms cubic-bezier(0.22, 1, 0.36, 1), stroke-width 420ms cubic-bezier(0.22, 1, 0.36, 1);
+    }
+
+    .stage.on {
+      stroke: var(--accent);
+      stroke-width: 3;
+    }
+
+    .stage-label {
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 20px;
+      fill: var(--text);
+      text-anchor: middle;
+    }
+
+    .signal { fill: var(--accent); }
+
+    /* Setup */
+    .setup-strip {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+    }
+
+    .replay-btn {
+      display: inline-block;
+      min-height: 44px;
+      padding: 10px 18px;
+      background: transparent;
+      border: 1.5px solid var(--accent);
+      color: var(--accent);
+      cursor: pointer;
+      font-size: 14px;
+      font-family: 'IBM Plex Mono', monospace;
+      margin: 20px 0 48px;
+    }
+
+    .replay-btn:hover {
+      background: var(--accent);
+      color: var(--on-accent);
+    }
+
+    .setup-row {
+      display: flex;
+      gap: 40px;
+      align-items: baseline;
+      padding: 20px 0;
+      border-top: 1.5px solid var(--line);
+    }
+
+    .setup-verb {
+      font-family: 'Bricolage Grotesque', serif;
+      font-size: 40px;
+      font-weight: 600;
+      width: 140px;
+      flex-shrink: 0;
+      color: var(--text);
+    }
+
+    .setup-desc { font-size: 18px; }
+
+    .setup-note {
+      margin-top: 32px;
+      max-width: 640px;
+      color: var(--muted);
+    }
+
+    /* Projects */
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(12, minmax(0, 1fr));
+      gap: 24px;
+    }
+
+    .project-card {
+      grid-column: span 1;
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      display: flex;
+      transition: box-shadow 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .project-card:nth-child(1) { grid-column: span 7; }
+    .project-card:nth-child(2) { grid-column: span 5; }
+    .project-card:nth-child(3) { grid-column: span 4; }
+    .project-card:nth-child(4) { grid-column: span 8; }
+    .project-card:nth-child(5) { grid-column: span 7; }
+    .project-card:nth-child(6) { grid-column: span 5; }
+    .project-card:nth-child(7) { grid-column: span 5; }
+    .project-card:nth-child(8) { grid-column: span 7; }
+    .project-card:nth-child(9) { grid-column: span 8; }
+    .project-card:nth-child(10) { grid-column: span 4; }
+
+    .project-card:hover,
+    .project-card:focus-within {
+      box-shadow: 4px 4px 0 var(--accent);
+    }
+
+    .project-link {
+      display: flex;
+      flex-direction: column;
+      flex: 1;
+      text-decoration: none;
+      color: var(--text);
+    }
+
+    .project-link:focus { outline: none; }
+
+    .project-link:focus-visible {
+      outline: 3px solid var(--accent);
+      outline-offset: -3px;
+    }
+
+    .project-art {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--page);
+      border-bottom: 1.5px solid var(--line);
+      padding: 24px;
+      min-height: 200px;
+    }
+
+    .motif {
+      width: 100%;
+      max-width: 300px;
+      height: auto;
+      color: var(--text);
+      transition: transform 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .project-card:hover .motif,
+    .project-card:focus-within .motif {
+      transform: translate(4px, -4px);
+    }
+
+    .motif * {
+      fill: none;
+      stroke: currentColor;
+      stroke-width: 1.5;
+      stroke-linejoin: round;
+      stroke-linecap: round;
+    }
+
+    .motif .af { fill: var(--accent); stroke: none; }
+    .motif .a { stroke: var(--accent); }
+    .motif .solid { fill: currentColor; stroke: none; }
+    .motif .hatch { fill: url(#hatch); }
+    .motif .dash { stroke-dasharray: 5 5; }
+
+    .project-content {
+      position: relative;
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      padding: 20px 20px 24px 28px;
+    }
+
+    .project-mark {
+      position: absolute;
+      left: 8px;
+      top: 28px;
+      width: 10px;
+      height: 10px;
+      background: var(--accent);
+      opacity: 0;
+      transition: opacity 160ms cubic-bezier(0.2, 0.8, 0.2, 1);
+    }
+
+    .project-card:hover .project-mark,
+    .project-card:focus-within .project-mark {
+      opacity: 1;
+    }
+
+    .project-title {
+      font-family: 'Bricolage Grotesque', serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+      margin-bottom: 8px;
+      color: var(--text);
+    }
+
+    .project-summary {
+      font-size: 16px;
+      line-height: 1.5;
+    }
+
+    .project-hard {
+      font-size: 14px;
+      color: var(--muted);
+      margin-top: 8px;
+    }
+
+    /* Diary */
+    .diary-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+
+    .diary-index { display: flex; flex-direction: column; gap: 24px; }
+
+    .diary-card {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .diary-card.lead { border-left: 4px solid var(--accent); }
+
+    .diary-tag {
+      align-self: flex-start;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+      color: var(--muted);
+      border: 1.5px solid var(--line);
+      padding: 2px 8px;
+    }
+
+    .diary-card h3 {
+      font-family: 'Bricolage Grotesque', serif;
+      font-size: 26px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--text);
+    }
+
+    .diary-card.lead h3 {
+      font-size: 44px;
+      text-transform: uppercase;
+      line-height: 1.1;
+    }
+
+    .diary-card p {
+      font-size: 16px;
+      color: var(--muted);
+    }
+
+    /* About and contact */
+    .about-section {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 60px;
+      border-top: 1.5px solid var(--line);
+    }
+
+    .about-bio h2 {
+      font-family: 'Bricolage Grotesque', serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .about-bio p {
+      font-size: 16px;
+      line-height: 1.6;
+      margin-bottom: 16px;
+    }
+
+    .about-bio .secondary {
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .contact-area {
+      background: var(--surface);
+      border: 1.5px solid var(--line);
+      padding: 40px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .contact-baseline {
+      display: block;
+      height: 2px;
+      background: var(--accent);
+      margin-bottom: 32px;
+      transform-origin: left;
+    }
+
+    .contact-heading {
+      font-family: 'Bricolage Grotesque', serif;
+      font-size: 36px;
+      font-weight: 700;
+      margin-bottom: 16px;
+      color: var(--text);
+    }
+
+    .contact-text { margin-bottom: 24px; }
+
+    .contact-link {
+      display: inline-flex;
+      align-items: center;
+      align-self: flex-start;
+      min-height: 44px;
+      font-size: 18px;
+      color: var(--text);
+      text-decoration: underline;
+      text-decoration-color: var(--line);
+      text-underline-offset: 4px;
+    }
+
+    .contact-link:hover,
+    .contact-link:focus-visible {
+      text-decoration-color: var(--accent);
+      outline-offset: 2px;
+    }
+
+    footer {
+      padding: 32px 40px;
+      border-top: 1.5px solid var(--line);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+    }
+
+    .footer-content {
+      display: flex;
+      gap: 40px;
+      align-items: center;
+    }
+
+    .footer-rule {
+      width: 24px;
+      height: 1.5px;
+      background: var(--line);
+    }
+
+    .back-to-top {
+      min-height: 44px;
+      background: transparent;
+      border: none;
+      color: var(--text);
+      cursor: pointer;
+      font-family: 'IBM Plex Mono', monospace;
+      font-size: 14px;
+    }
+
+    .back-to-top:hover { text-decoration: underline; }
+
+    /* Entrance states: only applied when JavaScript runs and motion is allowed */
+    .js [data-reveal="card"] { transform: translateY(16px); }
+    .js [data-reveal="rule"] { transform: scaleX(0); }
+
+    @media (prefers-reduced-motion: reduce) {
+      *, *::before, *::after {
+        animation: none !important;
+        transition-duration: 0ms !important;
+        scroll-behavior: auto !important;
+      }
+
+      .project-card:hover .motif,
+      .project-card:focus-within .motif {
+        transform: none;
+      }
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-wrap: wrap;
+        padding: 16px 20px;
+      }
+
+      nav {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        gap: 12px;
+      }
+
+      main { padding: 0 20px; }
+
+      section { padding: 64px 0; }
+
+      .hero { padding: 40px 0 64px; }
+
+      .hero h1 {
+        font-size: 42px;
+        margin-bottom: 32px;
+      }
+
+      .hero-body {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 32px;
+      }
+
+      .section-title { font-size: 36px; }
+
+      .setup-row {
+        flex-direction: column;
+        gap: 8px;
+      }
+
+      .setup-verb { width: auto; }
+
+      .projects-grid { grid-template-columns: minmax(0, 1fr); }
+
+      .project-card { grid-column: 1 / -1 !important; }
+
+      .diary-grid { grid-template-columns: minmax(0, 1fr); }
+
+      .diary-card.lead h3 { font-size: 30px; }
+
+      .about-section {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 40px;
+      }
+
+      .contact-area { padding: 24px; }
+
+      footer {
+        flex-direction: column;
+        gap: 20px;
+        padding: 24px 20px;
+        text-align: center;
+      }
+    }
+  </style>
+</head>
+<body>
+  <a href="#main" class="skip-link">Skip to main content</a>
+
+  <header>
+    <div class="logo">0xGondar</div>
+    <nav aria-label="Main">
+      <a href="#projects">Projects</a>
+      <a href="#setup">Setup</a>
+      <a href="#diary">Diary</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="theme-btn" id="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-labelledby="hero-title">
+      <p class="hero-name">Murat Can Yuksel</p>
+      <h1 id="hero-title">One developer.<br>Many moving parts.</h1>
+
+      <div class="hero-body">
+        <div>
+          <p class="hero-intro">Solo developer building apps, games and automations with AI agents.</p>
+          <p class="hero-availability">Open to AI automation roles, full time and freelance.</p>
+          <a href="#projects" class="cta">View projects</a>
+        </div>
+
+        <svg id="hero-diagram" class="hero-diagram" viewBox="0 0 560 400" role="img" aria-label="Workflow: one model plans, another codes, a third reviews">
+          <path class="route" d="M90 100 V300 H470 V100"/>
+          <rect class="stage" x="30" y="40" width="120" height="120"/>
+          <rect class="stage" x="220" y="240" width="120" height="120"/>
+          <rect class="stage" x="410" y="40" width="120" height="120"/>
+          <text class="stage-label" x="90" y="26">Plan</text>
+          <text class="stage-label" x="280" y="226">Code</text>
+          <text class="stage-label" x="470" y="26">Review</text>
+          <rect class="signal" x="80" y="90" width="20" height="20"/>
+        </svg>
+      </div>
+    </section>
+
+    <section id="setup" class="setup">
+      <h2 class="section-title">How I work</h2>
+
+      <svg id="setup-strip" class="setup-strip" viewBox="0 0 600 80" role="img" aria-label="Plan, Code and Review stages in order">
+        <path class="route" d="M160 40 H220 M380 40 H440"/>
+        <rect class="stage" x="0" y="0" width="160" height="80"/>
+        <rect class="stage" x="220" y="0" width="160" height="80"/>
+        <rect class="stage" x="440" y="0" width="160" height="80"/>
+        <text class="stage-label" x="80" y="70">Plan</text>
+        <text class="stage-label" x="300" y="70">Code</text>
+        <text class="stage-label" x="520" y="70">Review</text>
+        <rect class="signal" x="72" y="32" width="16" height="16"/>
+      </svg>
+      <button class="replay-btn" id="replay" type="button">Replay workflow</button>
+
+      <div class="setup-row">
+        <div class="setup-verb">Plan</div>
+        <p class="setup-desc">Plan with one model.</p>
+      </div>
+      <div class="setup-row">
+        <div class="setup-verb">Code</div>
+        <p class="setup-desc">Code with another.</p>
+      </div>
+      <div class="setup-row">
+        <div class="setup-verb">Review</div>
+        <p class="setup-desc">Review with a third.</p>
+      </div>
+
+      <p class="setup-note">I write no code by hand. Notes on model choice, cost per task, Claude Code mods, memory, skills and hooks are in the planned diary.</p>
+    </section>
+
+    <section id="projects">
+      <h2 class="section-title">Projects</h2>
+
+      <div class="projects-grid">
+        <article class="project-card" id="kestrel" data-reveal="card">
+          <a href="#kestrel" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <path d="M160 50 C128 34 90 34 56 44 V140 C90 130 128 130 160 146 C192 130 230 130 264 140 V44 C230 34 192 34 160 50 Z"/>
+                <path d="M160 50 V146"/>
+                <path d="M76 72 H136 M76 92 H136 M76 112 H116"/>
+                <rect class="af" x="186" y="78" width="60" height="18"/>
+                <path d="M186 70 H246 M186 104 H246"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Kestrel Reader</h3>
+              <p class="project-summary">Speed reading app against doomscrolling. React Native.</p>
+              <p class="project-hard">Hard part: shipping to stores from Linux, no Mac.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="crash-dummy-yard" data-reveal="card">
+          <a href="#crash-dummy-yard" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <rect class="solid" x="36" y="136" width="248" height="12"/>
+                <circle class="af" cx="150" cy="58" r="14"/>
+                <path d="M150 74 V106 M150 84 L120 102 M150 84 L186 66 M150 106 L128 134 M150 106 L174 130"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Crash Dummy Yard</h3>
+              <p class="project-summary">Physics ragdoll web game for Poki. Copied what makes the top game in the genre work, then improved it.</p>
+              <p class="project-hard">Hard part: AI voice lines and game feel; 41 tests + Playwright release checks.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="yoyo" data-reveal="card">
+          <a href="#yoyo" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <defs>
+                  <symbol id="yoyo-figure" viewBox="0 0 40 60">
+                    <circle class="solid" cx="20" cy="18" r="12"/>
+                    <path class="solid" d="M2 60 C2 38 10 32 20 32 C30 32 38 38 38 60 Z"/>
+                  </symbol>
+                </defs>
+                <use href="#yoyo-figure" x="20" y="60" width="40" height="60"/>
+                <use href="#yoyo-figure" x="100" y="60" width="40" height="60"/>
+                <use href="#yoyo-figure" x="180" y="60" width="40" height="60"/>
+                <use href="#yoyo-figure" x="260" y="60" width="40" height="60"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Yoyo</h3>
+              <p class="project-summary">AI influencer character, disclosed as AI. Same face across hundreds of images.</p>
+              <p class="project-hard">Hard part: identity consistency.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="doodle-explainer-youtube-channels" data-reveal="card">
+          <a href="#doodle-explainer-youtube-channels" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <rect x="40" y="16" width="60" height="40"/>
+                <rect class="a" x="130" y="16" width="60" height="40"/>
+                <rect x="220" y="16" width="60" height="40"/>
+                <path d="M70 56 V76 M160 56 V76 M250 56 V76"/>
+                <rect x="24" y="76" width="272" height="72"/>
+                <path class="dash" d="M24 88 H296 M24 136 H296"/>
+                <rect x="60" y="100" width="36" height="28"/>
+                <rect x="142" y="100" width="36" height="28"/>
+                <rect x="224" y="100" width="36" height="28"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Doodle explainer YouTube channels</h3>
+              <p class="project-summary">Stick figure explainers with a pipeline: script, felt-tip images, free TTS voice, auto edit. First videos cost $0.</p>
+              <p class="project-hard">Hard part: picking models on a $10/month budget; text drawn in code after image text misspelled 2 of 3 times.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="hermes-agent" data-reveal="card">
+          <a href="#hermes-agent" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <rect x="28" y="40" width="72" height="44"/>
+                <rect class="a" x="124" y="40" width="72" height="44"/>
+                <rect x="220" y="40" width="72" height="44"/>
+                <rect x="124" y="112" width="72" height="40"/>
+                <path d="M100 62 H124 M196 62 H220 M160 84 V112"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Hermes agent</h3>
+              <p class="project-summary">Telegram controlled agent. One model orchestrates, a cheaper model works.</p>
+              <p class="project-hard">Hard part: the cheap orchestrator invented flags; moved planning to a deterministic state machine.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="claude-code-mods" data-reveal="card">
+          <a href="#claude-code-mods" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <defs>
+                  <symbol id="plug" viewBox="0 0 40 60">
+                    <path d="M12 2 V18 M28 2 V18 M6 18 H34 V38 Q34 48 24 48 H16 Q6 48 6 38 Z M20 48 V58"/>
+                  </symbol>
+                </defs>
+                <use href="#plug" x="8" y="60" width="40" height="60"/>
+                <use href="#plug" x="56" y="60" width="40" height="60"/>
+                <use href="#plug" x="104" y="60" width="40" height="60"/>
+                <use href="#plug" x="152" y="60" width="40" height="60"/>
+                <use href="#plug" x="200" y="60" width="40" height="60"/>
+                <use href="#plug" x="248" y="60" width="40" height="60"/>
+                <rect class="af" x="296" y="8" width="12" height="12"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Claude Code mods</h3>
+              <p class="project-summary">Open source TypeScript hook plugins: dashless, slopless, usage-meter, secret-guard, spiral-stop, output-ladder.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="the-shadow" data-reveal="card">
+          <a href="#the-shadow" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <rect x="40" y="28" width="240" height="124"/>
+                <path d="M40 90 H280 M104 28 V152 M168 28 V152 M232 28 V152"/>
+                <rect x="50" y="38" width="44" height="40"/>
+                <rect class="af" x="172" y="98" width="56" height="44"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">The Shadow</h3>
+              <p class="project-summary">Personal command center for tasks, library of 378 saved links, guides, videos and X posts.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="hushpane-prunlet" data-reveal="card">
+          <a href="#hushpane-prunlet" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <defs>
+                  <pattern id="hatch" width="8" height="8" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+                    <path d="M0 0 V8"/>
+                  </pattern>
+                </defs>
+                <rect x="28" y="28" width="120" height="124"/>
+                <rect class="hatch" x="44" y="52" width="88" height="40"/>
+                <path d="M44 108 H132 M44 124 H116"/>
+                <rect x="172" y="28" width="120" height="124"/>
+                <path d="M188 52 H276 M188 74 H276"/>
+                <path class="a dash" d="M188 96 H276 M188 118 H250"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Hushpane + Prunlet</h3>
+              <p class="project-summary">Chrome extensions for blurring sensitive page areas and bulk deleting Reddit history.</p>
+              <p class="project-hard">Hard part: Reddit rate limits, 100 requests per 10 minutes.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="strategy-game" data-reveal="card">
+          <a href="#strategy-game" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <path d="M40 60 L118 36 L138 112 L58 132 Z"/>
+                <path class="af" d="M138 112 L206 70 L262 96 L244 150 L152 148 Z"/>
+                <path d="M206 70 L292 40 L300 124 L262 96 Z"/>
+                <circle class="solid" cx="90" cy="84" r="4"/>
+                <circle class="solid" cx="196" cy="114" r="4"/>
+                <circle class="solid" cx="262" cy="70" r="4"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">Strategy game</h3>
+              <p class="project-summary">Diplomacy-style world map war game against Claude-played countries. Private calls keep bots from sharing secrets.</p>
+              <p class="project-hard">131 tests.</p>
+            </div>
+          </a>
+        </article>
+
+        <article class="project-card" id="taletongue" data-reveal="card">
+          <a href="#taletongue" class="project-link">
+            <div class="project-art">
+              <svg class="motif" viewBox="0 0 320 180" aria-hidden="true" focusable="false">
+                <path d="M32 40 Q96 28 152 44 V148 Q96 134 32 146 Z"/>
+                <path d="M168 44 Q224 28 288 40 V146 Q224 134 168 148 Z"/>
+                <path class="a" d="M52 68 H118 V96 H72 L56 110 V96 H52 Z"/>
+                <path class="a" d="M190 84 H262 V112 H248 L238 124 V112 H190 Z"/>
+                <path d="M52 124 H124 M190 132 H258"/>
+              </svg>
+            </div>
+            <div class="project-content">
+              <span class="project-mark" aria-hidden="true"></span>
+              <h3 class="project-title">TaleTongue</h3>
+              <p class="project-summary">Story based language learning app for Turkish and Chinese.</p>
+            </div>
+          </a>
+        </article>
+      </div>
+    </section>
+
+    <section id="diary">
+      <h2 class="section-title">Planned diary</h2>
+
+      <div class="diary-grid">
+        <article class="diary-card lead">
+          <h3>How I pick models</h3>
+          <p>Plan, code, review split; cost per task.</p>
+          <span class="diary-tag">Coming soon</span>
+        </article>
+
+        <div class="diary-index">
+          <article class="diary-card">
+            <h3>My Claude Code setup</h3>
+            <p>Mods, memory, skills and hooks.</p>
+            <span class="diary-tag">Coming soon</span>
+          </article>
+          <article class="diary-card">
+            <h3>How the AI influencer was made</h3>
+            <p>Step by step, with the failures.</p>
+            <span class="diary-tag">Coming soon</span>
+          </article>
+          <article class="diary-card">
+            <h3>Building a YouTube video pipeline for $0</h3>
+            <p>Script, felt-tip images, free TTS voice, auto edit.</p>
+            <span class="diary-tag">Coming soon</span>
+          </article>
+          <article class="diary-card">
+            <h3>Shipping an iOS app from Linux</h3>
+            <p>Shipping to stores from Linux, no Mac.</p>
+            <span class="diary-tag">Coming soon</span>
+          </article>
+          <article class="diary-card">
+            <h3>Copying a hit game and making it better</h3>
+            <p>Copied what makes the top game in the genre work, then improved it.</p>
+            <span class="diary-tag">Coming soon</span>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="about-section" id="about">
+      <div class="about-bio">
+        <h2>About</h2>
+        <p>5 to 8 years working with React, Next.js, Node, TypeScript, React Native and Solidity. BA Comparative Literature; MA Semiotics. Turkish, English and French. Lived in Bangkok, Chiang Mai and Da Nang. Trains Muay Thai.</p>
+        <p class="secondary">Former web3 security auditor (Code4rena, Sherlock, Cantina): 15 High + 15 Medium findings. Fuzzing and invariant testing at Recon, Jan to Jun 2026.</p>
+      </div>
+
+      <div class="contact-area" id="contact">
+        <span class="contact-baseline" data-reveal="rule"></span>
+        <h2 class="contact-heading">Hire me</h2>
+        <p class="contact-text">Open to AI automation roles, full time and freelance.</p>
+        <a href="https://github.com/0xGondarxyz" class="contact-link" target="_blank" rel="noopener noreferrer">github.com/0xGondarxyz</a>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-content">
+      <div>Murat Can Yuksel</div>
+      <div class="footer-rule"></div>
+      <div>0xGondar</div>
+    </div>
+    <button class="back-to-top" id="back-top" type="button" aria-label="Back to top">↑ Top</button>
+  </footer>
+
+  <script>
+    const root = document.documentElement;
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+    const systemDark = matchMedia('(prefers-color-scheme: dark)');
+
+    // Theme follows the system until the button is pressed
+    const themeBtn = document.getElementById('theme-toggle');
+    const currentTheme = () => root.dataset.theme || (systemDark.matches ? 'dark' : 'light');
+    themeBtn.setAttribute('aria-pressed', currentTheme() === 'dark');
+    themeBtn.addEventListener('click', () => {
+      const next = currentTheme() === 'dark' ? 'light' : 'dark';
+      root.dataset.theme = next;
+      themeBtn.setAttribute('aria-pressed', next === 'dark');
+    });
+
+    // Signal path: [x, y, offset, stage lit when reached]
+    const HERO_PATH = [[0, 0, 0, 0], [0, 200, 0.256], [190, 200, 0.5, 1], [380, 200, 0.744], [380, 0, 1, 2]];
+    const STRIP_PATH = [[0, 0, 0, 0], [220, 0, 0.5, 1], [440, 0, 1, 2]];
+
+    function playSignal(square, stages, path, duration, delay = 0) {
+      (square.timers || []).forEach(clearTimeout);
+      square.timers = [];
+      square.getAnimations().forEach(a => a.cancel());
+      stages.forEach(s => s.classList.remove('on'));
+      square.animate(
+        path.map(([x, y, offset]) => ({ transform: `translate(${x}px, ${y}px)`, offset, easing: 'steps(4, end)' })),
+        { duration, delay, fill: 'both' }
+      );
+      path.forEach(([, , offset, stage]) => {
+        if (stage !== undefined) {
+          square.timers.push(setTimeout(() => stages[stage].classList.add('on'), delay + offset * duration));
+        }
+      });
+    }
+
+    const heroDiagram = document.getElementById('hero-diagram');
+    const stripDiagram = document.getElementById('setup-strip');
+    const heroStages = heroDiagram.querySelectorAll('.stage');
+    const stripStages = stripDiagram.querySelectorAll('.stage');
+    const heroSignal = heroDiagram.querySelector('.signal');
+    const stripSignal = stripDiagram.querySelector('.signal');
+
+    if (reduced) {
+      heroSignal.setAttribute('transform', 'translate(380 0)');
+      stripSignal.setAttribute('transform', 'translate(440 0)');
+      [...heroStages, ...stripStages].forEach(s => s.classList.add('on'));
+    } else {
+      playSignal(heroSignal, heroStages, HERO_PATH, 900, 300);
+      document.getElementById('replay').addEventListener('click', () => {
+        playSignal(stripSignal, stripStages, STRIP_PATH, 1200);
+      });
+
+      // Cards and the contact rule rise in once, staggered by position
+      const items = [...document.querySelectorAll('[data-reveal]')];
+      const io = new IntersectionObserver(entries => {
+        entries.forEach(({ target, isIntersecting }) => {
+          if (!isIntersecting) return;
+          io.unobserve(target);
+          const rule = target.dataset.reveal === 'rule';
+          target.animate(
+            [
+              { transform: rule ? 'scaleX(0)' : 'translateY(16px)' },
+              { transform: 'none' }
+            ],
+            {
+              duration: rule ? 460 : 400,
+              delay: rule ? 0 : (items.indexOf(target) % 3) * 80,
+              easing: 'cubic-bezier(0.22, 1, 0.36, 1)',
+              fill: 'both'
+            }
+          );
+        });
+      }, { threshold: 0.2 });
+      items.forEach(el => io.observe(el));
+    }
+
+    document.getElementById('back-top').addEventListener('click', () => {
+      window.scrollTo({ top: 0, behavior: reduced ? 'auto' : 'smooth' });
+    });
+  </script>
+</body>
+</html>
