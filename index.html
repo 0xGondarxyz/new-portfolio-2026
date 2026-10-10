@@ -7,7 +7,7 @@
   <meta name="description" content="Solo developer building apps, games and automations with AI agents. Open to AI automation roles.">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet">
   <script>
     if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js');
   </script>
@@ -34,6 +34,7 @@
     }
 
     body {
+      overflow-x: clip;
       font-family: 'IBM Plex Sans', -apple-system, system-ui, sans-serif;
       background: var(--page);
       color: var(--text);
@@ -136,26 +137,40 @@
     }
 
     /* Hero */
-    .hero { padding: 56px 0 96px; }
+    .hero { --header-height: 94px; min-height: calc(100svh - var(--header-height)); display: flex; flex-direction: column; justify-content: center; position: relative; isolation: isolate; padding: 32px 0 40px; margin-inline: calc(50% - 50vw); padding-inline: max(40px, calc((100vw - 1200px) / 2)); }
+    .hero-grid { position: absolute; inset: 0; width: 100%; height: 100%; z-index: 0; pointer-events: none; }
+    .hero > :not(.hero-grid) { position: relative; z-index: 1; }
 
     .hero-name {
       font-family: 'IBM Plex Mono', monospace;
       font-size: 16px;
-      margin-bottom: 16px;
+      margin-bottom: 12px;
     }
 
     .hero h1 {
       font-family: 'Bricolage Grotesque', serif;
-      font-size: 88px;
+      font-size: clamp(44px, 9vw, 96px);
       font-weight: 700;
-      line-height: 1.1;
-      margin-bottom: 48px;
+      line-height: 1;
+      margin-bottom: 32px;
       color: var(--text);
     }
 
+    .hero-word { display: inline-block; }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .hero-word { clip-path: inset(0 100% 0 0); animation: word-reveal 420ms steps(6, end) forwards; }
+      .hero-word:nth-of-type(2) { animation-delay: 90ms; }
+      .hero-word:nth-of-type(3) { animation-delay: 180ms; }
+      .hero-word:nth-of-type(4) { animation-delay: 270ms; }
+      .hero-word:nth-of-type(5) { animation-delay: 360ms; }
+    }
+
+    @keyframes word-reveal { to { clip-path: inset(0); } }
+
     .hero-body {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) minmax(0, 1.1fr);
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1fr);
       gap: 48px;
       align-items: center;
     }
@@ -168,13 +183,49 @@
     .hero-availability {
       font-size: 16px;
       color: var(--muted);
-      margin-bottom: 32px;
+      margin-bottom: 24px;
     }
 
-    .hero-diagram {
-      display: block;
-      width: 100%;
-      height: auto;
+    .hero-count { margin-top: 12px; font: 12px 'IBM Plex Mono', monospace; color: var(--muted); }
+    .agent-console { min-width: 0; padding: 16px; background: var(--surface); border: 1.5px solid var(--line); box-shadow: 8px 8px 0 var(--line); }
+    .console-titlebar { display: flex; align-items: center; justify-content: space-between; padding-bottom: 12px; border-bottom: 1.5px solid var(--line); font: 13px 'IBM Plex Mono', monospace; }
+    .console-dots { display: flex; gap: 6px; }
+    .console-dots span { width: 8px; height: 8px; border: 1.5px solid var(--line); }
+    .console-command { min-height: 38px; display: flex; align-items: center; overflow: hidden; white-space: nowrap; font: 10px 'Press Start 2P', cursive; }
+    .console-command #ship-slug { margin-left: 1em; }
+    .command-cursor { animation: cursor-blink 800ms steps(2, end) infinite; }
+    @keyframes cursor-blink { 50% { opacity: 0; } }
+    .console-flow { position: relative; }
+    .hero-diagram { display: block; width: 100%; height: auto; }
+    .agent-console .stage-label { font-size: 16px; }
+    .stage-chip { font: 11px 'IBM Plex Mono', monospace; fill: var(--muted); text-anchor: middle; }
+
+    .shipped-stamp {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      padding: 10px 9px;
+      color: var(--accent);
+      background: var(--surface);
+      border: 3px solid var(--accent);
+      font: 10px 'Press Start 2P', cursive;
+      opacity: 0;
+      transform: translate(-50%, -50%) rotate(-6deg) scale(0);
+      pointer-events: none;
+    }
+
+    .shipped-stamp.show { animation: shipped-in 180ms steps(3, end) forwards; }
+    .shipped-stamp.fade { animation: shipped-out 180ms steps(3, end) forwards; }
+    @keyframes shipped-in { to { opacity: 1; transform: translate(-50%, -50%) rotate(-6deg) scale(1); } }
+    @keyframes shipped-out { to { opacity: 0; transform: translate(-50%, -50%) rotate(-6deg) scale(0.9); } }
+    .shelf { display: flex; gap: 8px; margin-top: 12px; }
+    .shelf-slot { flex: 1; min-width: 0; height: 48px; border: 1.5px dashed var(--line); }
+    .shelf-tile { display: none; width: 100%; height: 100%; place-items: center; color: var(--on-accent); background: var(--accent); font: 9px 'Press Start 2P', cursive; }
+    .shelf-slot.filled .shelf-tile { display: grid; }
+    .shelf-slot.filled .shelf-tile.drop { animation: tile-drop 240ms steps(4, end); }
+    @keyframes tile-drop {
+      from { opacity: 0; transform: translateY(-14px) scale(0.8); }
+      to { opacity: 1; transform: translateY(0) scale(1); }
     }
 
     .cta {
@@ -568,6 +619,8 @@
       .project-card:focus-within .motif {
         transform: none;
       }
+
+      .command-cursor { display: none; }
     }
 
     @media (max-width: 720px) {
@@ -587,17 +640,18 @@
 
       section { padding: 64px 0; }
 
-      .hero { padding: 40px 0 64px; }
+      .hero { --header-height: 126px; padding: 20px 0 28px; padding-inline: 20px; }
 
-      .hero h1 {
-        font-size: 42px;
-        margin-bottom: 32px;
-      }
+      .hero h1 { margin-bottom: 24px; }
 
       .hero-body {
         grid-template-columns: minmax(0, 1fr);
-        gap: 32px;
+        gap: 28px;
       }
+
+      .agent-console { padding: 12px; }
+      .console-command { font-size: 9px; }
+      .shelf { gap: 6px; }
 
       .section-title { font-size: 36px; }
 
@@ -648,26 +702,48 @@
 
   <main id="main">
     <section class="hero" aria-labelledby="hero-title">
+      <canvas class="hero-grid" aria-hidden="true"></canvas>
       <p class="hero-name">Murat Can Yuksel</p>
-      <h1 id="hero-title">One developer.<br>Many moving parts.</h1>
+      <h1 id="hero-title"><span class="hero-word">One</span> <span class="hero-word">developer.</span><br><span class="hero-word">Many</span> <span class="hero-word">moving</span> <span class="hero-word">parts.</span></h1>
 
       <div class="hero-body">
         <div>
           <p class="hero-intro">Solo developer building apps, games and automations with AI agents.</p>
           <p class="hero-availability">Open to AI automation roles, full time and freelance.</p>
           <a href="#projects" class="cta">View projects</a>
+          <p class="hero-count">10 projects. 6 diary posts on the way.</p>
         </div>
 
-        <svg id="hero-diagram" class="hero-diagram" viewBox="0 0 560 400" role="img" aria-label="Workflow: one model plans, another codes, a third reviews">
-          <path class="route" d="M90 100 V300 H470 V100"/>
-          <rect class="stage" x="30" y="40" width="120" height="120"/>
-          <rect class="stage" x="220" y="240" width="120" height="120"/>
-          <rect class="stage" x="410" y="40" width="120" height="120"/>
-          <text class="stage-label" x="90" y="26">Plan</text>
-          <text class="stage-label" x="280" y="226">Code</text>
-          <text class="stage-label" x="470" y="26">Review</text>
-          <rect class="signal" x="80" y="90" width="20" height="20"/>
-        </svg>
+        <div class="agent-console" role="group" aria-label="AI agent shipping console">
+          <div class="console-titlebar">
+            <span>~/indie</span>
+            <span class="console-dots" aria-hidden="true"><span></span><span></span><span></span></span>
+          </div>
+          <div class="console-command"><span>$ ship </span><span id="ship-slug"></span><span class="command-cursor" aria-hidden="true">█</span></div>
+          <div class="console-flow">
+            <svg id="hero-diagram" class="hero-diagram" viewBox="-16 0 432 140" role="img" aria-label="Project workflow: Plan with GPT-6.1 Sol, Code with GPT-6 Luna, Review with Claude Opus 5.5">
+              <path class="route" d="M50 70 H350"/>
+              <rect class="stage" x="-16" y="20" width="132" height="100"/>
+              <rect class="stage" x="134" y="20" width="132" height="100"/>
+              <rect class="stage" x="284" y="20" width="132" height="100"/>
+              <text class="stage-label" x="50" y="52">Plan</text>
+              <text class="stage-chip" x="50" y="94">GPT-6.1 Sol</text>
+              <text class="stage-label" x="200" y="52">Code</text>
+              <text class="stage-chip" x="200" y="94">GPT-6 Luna</text>
+              <text class="stage-label" x="350" y="52">Review</text>
+              <text class="stage-chip" x="350" y="94">Claude Opus 5.5</text>
+              <rect class="signal" x="40" y="60" width="20" height="20"/>
+            </svg>
+            <div class="shipped-stamp" id="shipped-stamp" aria-hidden="true">SHIPPED</div>
+          </div>
+          <div class="shelf" aria-label="Shipped project shelf">
+            <div class="shelf-slot" aria-label="Empty cartridge slot 1"><span class="shelf-tile"></span></div>
+            <div class="shelf-slot" aria-label="Empty cartridge slot 2"><span class="shelf-tile"></span></div>
+            <div class="shelf-slot" aria-label="Empty cartridge slot 3"><span class="shelf-tile"></span></div>
+            <div class="shelf-slot" aria-label="Empty cartridge slot 4"><span class="shelf-tile"></span></div>
+            <div class="shelf-slot" aria-label="Empty cartridge slot 5"><span class="shelf-tile"></span></div>
+          </div>
+        </div>
       </div>
     </section>
 
@@ -1006,7 +1082,7 @@
     });
 
     // Signal path: [x, y, offset, stage lit when reached]
-    const HERO_PATH = [[0, 0, 0, 0], [0, 200, 0.256], [190, 200, 0.5, 1], [380, 200, 0.744], [380, 0, 1, 2]];
+    const HERO_PATH = [[0, 0, 0, 0], [150, 0, 0.5, 1], [300, 0, 1, 2]];
     const STRIP_PATH = [[0, 0, 0, 0], [220, 0, 0.5, 1], [440, 0, 1, 2]];
 
     function playSignal(square, stages, path, duration, delay = 0) {
@@ -1031,13 +1107,134 @@
     const stripStages = stripDiagram.querySelectorAll('.stage');
     const heroSignal = heroDiagram.querySelector('.signal');
     const stripSignal = stripDiagram.querySelector('.signal');
+    const heroSection = heroDiagram.closest('.hero');
+    const shipSlug = document.getElementById('ship-slug');
+    const shippedStamp = document.getElementById('shipped-stamp');
+    const shelfSlots = [...document.querySelectorAll('.shelf-slot')];
+    const shipSlugs = ['kestrel-reader', 'crash-dummy-yard', 'yoyo', 'doodle-channels', 'hushpane'];
+    const shipCodes = ['KR', 'CD', 'YO', 'DC', 'HP'];
+    const gridCanvas = heroSection.querySelector('.hero-grid');
+    const gridContext = gridCanvas.getContext('2d');
+    const hoverPointer = matchMedia('(hover: hover) and (pointer: fine)').matches;
+    const cellSize = 16;
+    const trail = new Map();
+    let blinkCells = [], gridWidth = 0, gridHeight = 0, pixelRatio = 1, gridVisible = false, gridFrame = 0;
+
+    function drawGrid(now) {
+      const colors = getComputedStyle(root);
+      gridContext.setTransform(pixelRatio, 0, 0, pixelRatio, 0, 0);
+      gridContext.clearRect(0, 0, gridWidth, gridHeight);
+      gridContext.strokeStyle = colors.getPropertyValue('--line').trim();
+      gridContext.globalAlpha = 0.12;
+      gridContext.beginPath();
+      for (let x = 0.5; x < gridWidth; x += cellSize) { gridContext.moveTo(x, 0); gridContext.lineTo(x, gridHeight); }
+      for (let y = 0.5; y < gridHeight; y += cellSize) { gridContext.moveTo(0, y); gridContext.lineTo(gridWidth, y); }
+      gridContext.stroke();
+      if (!reduced) {
+        gridContext.fillStyle = colors.getPropertyValue('--accent').trim();
+        if (hoverPointer) {
+          for (const [key, cell] of trail) {
+            const fade = 1 - (now - cell.time) / 600;
+            if (fade <= 0) { trail.delete(key); continue; }
+            gridContext.globalAlpha = fade * cell.power * 0.55;
+            gridContext.fillRect(cell.x * cellSize + 1, cell.y * cellSize + 1, 14, 14);
+          }
+        } else blinkCells.forEach(cell => {
+          gridContext.globalAlpha = 0.08 + Math.max(0, Math.sin(now / 1100 + cell.phase)) * 0.34;
+          gridContext.fillRect(cell.x * cellSize + 1, cell.y * cellSize + 1, 14, 14);
+        });
+      }
+      gridContext.globalAlpha = 1;
+    }
+
+    const drawGridFrame = now => {
+      gridFrame = 0;
+      drawGrid(now);
+      if (gridVisible && !reduced) gridFrame = requestAnimationFrame(drawGridFrame);
+    };
+    const resizeHeroGrid = () => {
+      const bounds = heroSection.getBoundingClientRect();
+      gridWidth = bounds.width; gridHeight = bounds.height; pixelRatio = window.devicePixelRatio || 1;
+      gridCanvas.width = Math.round(gridWidth * pixelRatio); gridCanvas.height = Math.round(gridHeight * pixelRatio);
+      trail.clear();
+      const columns = Math.ceil(gridWidth / cellSize), rows = Math.ceil(gridHeight / cellSize);
+      blinkCells = Array.from({ length: 3 + Math.floor(Math.random() * 3) }, () => ({
+        x: Math.floor(Math.random() * columns), y: Math.floor(Math.random() * rows), phase: Math.random() * Math.PI * 2
+      }));
+      if (gridVisible) drawGrid(performance.now());
+    };
+    new ResizeObserver(resizeHeroGrid).observe(heroSection);
+    new IntersectionObserver(entries => {
+      gridVisible = entries[0].isIntersecting;
+      if (gridVisible) {
+        drawGrid(performance.now());
+        if (!reduced && !gridFrame) gridFrame = requestAnimationFrame(drawGridFrame);
+      } else { cancelAnimationFrame(gridFrame); gridFrame = 0; }
+    }).observe(heroSection);
+    new MutationObserver(() => { if (gridVisible) drawGrid(performance.now()); }).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+    heroSection.addEventListener('pointermove', event => {
+      if (!hoverPointer || event.pointerType === 'touch') return;
+      const bounds = heroSection.getBoundingClientRect();
+      const centerX = Math.floor((event.clientX - bounds.left) / cellSize), centerY = Math.floor((event.clientY - bounds.top) / cellSize);
+      for (let y = -2; y <= 2; y++) for (let x = -2; x <= 2; x++) {
+        const distance = Math.hypot(x, y);
+        if (distance <= 2.4) trail.set((centerX + x) + ',' + (centerY + y), {
+          x: centerX + x, y: centerY + y, time: performance.now(), power: 1 - distance / 2.6
+        });
+      }
+    });
+
+    function shipProject(index) {
+      const slug = shipSlugs[index];
+      let position = 0;
+      shipSlug.textContent = '';
+      const typeNext = () => {
+        shipSlug.textContent = slug.slice(0, ++position);
+        if (position < slug.length) return setTimeout(typeNext, 45);
+        playSignal(heroSignal, heroStages, HERO_PATH, 900);
+        setTimeout(() => {
+          shippedStamp.className = 'shipped-stamp show';
+          setTimeout(() => {
+            shippedStamp.className = 'shipped-stamp fade';
+            setTimeout(() => {
+              shippedStamp.className = 'shipped-stamp';
+              const slot = shelfSlots[index], tile = slot.querySelector('.shelf-tile');
+              tile.textContent = shipCodes[index];
+              slot.classList.add('filled');
+              slot.setAttribute('aria-label', shipCodes[index] + ' cartridge');
+              tile.classList.remove('drop');
+              void tile.offsetWidth;
+              tile.classList.add('drop');
+              heroStages.forEach(stage => stage.classList.remove('on'));
+              heroSignal.setAttribute('transform', 'translate(0 0)');
+              if (index < 4) shipProject(index + 1);
+              else setTimeout(() => {
+                shelfSlots.forEach((emptySlot, slotIndex) => {
+                  emptySlot.classList.remove('filled');
+                  emptySlot.setAttribute('aria-label', 'Empty cartridge slot ' + (slotIndex + 1));
+                  emptySlot.querySelector('.shelf-tile').textContent = '';
+                });
+                shipProject(0);
+              }, 2000);
+            }, 180);
+          }, 880);
+        }, 900);
+      };
+      typeNext();
+    }
 
     if (reduced) {
-      heroSignal.setAttribute('transform', 'translate(380 0)');
+      heroSignal.setAttribute('transform', 'translate(300 0)');
       stripSignal.setAttribute('transform', 'translate(440 0)');
       [...heroStages, ...stripStages].forEach(s => s.classList.add('on'));
+      shipSlug.textContent = 'hushpane';
+      shelfSlots.forEach((slot, index) => {
+        slot.classList.add('filled');
+        slot.setAttribute('aria-label', shipCodes[index] + ' cartridge');
+        slot.querySelector('.shelf-tile').textContent = shipCodes[index];
+      });
     } else {
-      playSignal(heroSignal, heroStages, HERO_PATH, 900, 300);
+      shipProject(0);
       document.getElementById('replay').addEventListener('click', () => {
         playSignal(stripSignal, stripStages, STRIP_PATH, 1200);
       });
