@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://new-portfolio-2026.pages.dev/sitemap-index.xml

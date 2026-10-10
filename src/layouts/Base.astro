@@ -1,0 +1,79 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+  jsonLd?: Record<string, unknown> | Record<string, unknown>[];
+}
+
+const { title, description, image, type = 'website', jsonLd } = Astro.props;
+const canonicalUrl = new URL(Astro.url.pathname, Astro.site).href;
+const imageUrl = image ? new URL(image, Astro.site).href : undefined;
+const jsonLdText = jsonLd ? JSON.stringify(jsonLd).replace(/</g, '\\u003c') : undefined;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:title" content={title} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content={type} />
+    <meta property="og:url" content={canonicalUrl} />
+    {imageUrl && <meta property="og:image" content={imageUrl} />}
+    <meta name="twitter:card" content="summary_large_image" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@600;700&family=IBM+Plex+Mono:wght@400&family=IBM+Plex+Sans:wght@400;500&family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <link rel="alternate" type="application/rss+xml" title="Murat Can Yuksel diary" href="/rss.xml" />
+    <script is:inline>
+      if (!matchMedia('(prefers-reduced-motion: reduce)').matches) document.documentElement.classList.add('js');
+    </script>
+    {jsonLdText && <script type="application/ld+json" set:html={jsonLdText} />}
+  </head>
+  <body>
+    <a href="/#main" class="skip-link">Skip to main content</a>
+
+    <header>
+      <div class="logo">0xGondar</div>
+      <nav aria-label="Main">
+        <a href="/#projects">Projects</a>
+        <a href="/#setup">Setup</a>
+        <a href="/diary/">Diary</a>
+        <a href="/#contact">Contact</a>
+      </nav>
+      <button class="theme-btn" id="theme-toggle" type="button" aria-pressed="false">Dark mode</button>
+    </header>
+
+    <slot />
+
+    <footer>
+      <div class="footer-content">
+        <div>Murat Can Yuksel</div>
+        <div class="footer-rule"></div>
+        <div>0xGondar</div>
+      </div>
+      <button class="back-to-top" id="back-top" type="button" aria-label="Back to top">↑ Top</button>
+    </footer>
+
+    <script is:inline>
+      const root = document.documentElement;
+      const systemDark = matchMedia('(prefers-color-scheme: dark)');
+      const themeBtn = document.getElementById('theme-toggle');
+      const currentTheme = () => root.dataset.theme || (systemDark.matches ? 'dark' : 'light');
+      themeBtn.setAttribute('aria-pressed', currentTheme() === 'dark');
+      themeBtn.addEventListener('click', () => {
+        const next = currentTheme() === 'dark' ? 'light' : 'dark';
+        root.dataset.theme = next;
+        themeBtn.setAttribute('aria-pressed', next === 'dark');
+      });
+    </script>
+  </body>
+</html>
